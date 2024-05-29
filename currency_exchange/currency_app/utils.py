@@ -32,7 +32,8 @@ def fetch_currency_rates(start_date, end_date):
             date = datetime.strptime(cols[0].text.strip(), '%d.%m.%Y').date()
             rate = float(cols[2].text.strip().replace(',', '.'))
             change = float(cols[3].text.strip().replace(',', '.'))
-            all_data.append({'date': date, 'currency': currency, 'rate': rate, 'change': change})
+            currency_code = code
+            all_data.append({'date': date, 'currency': currency, 'rate': rate, 'change': change, 'currency_code': currency_code})
     return all_data
 
 def fetch_country_currencies():
@@ -56,8 +57,9 @@ def fetch_country_currencies():
 def calculate_relative_changes(base_date):
     base_rates = CurrencyRate.objects.filter(date=base_date)
     relative_changes = []
-
+    print(base_date)
     for base_rate in base_rates:
+        print('asdasd')
         currency = base_rate.currency
         rates = CurrencyRate.objects.filter(currency=currency)
         for rate in rates:

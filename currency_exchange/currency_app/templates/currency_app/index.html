@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Курс обмена валют</title>
+    <title>Currency Data</title>
 </head>
 <body>
-    <h1>Выбор периода</h1>
+    <h1>Currency Data</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Получить курсы валют</button>
+        <button type="submit">Fetch Data</button>
     </form>
+    <br>
+    <a href="{% url 'relative_changes' %}">View Relative Changes</a>
 </body>
 </html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Relative Changes in Currency Rates</title>
+</head>
+<body>
+    <h1>Relative Changes in Currency Rates</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Show Changes</button>
+    </form>
+
+    {% if graphic %}
+        <h2>Graph:</h2>
+        <img src="data:image/png;base64,{{ graphic }}" alt="Graph">
+    {% endif %}
+</body>
+</html>

@@ -14,7 +14,7 @@ class CurrencyRate(models.Model):
     currency = models.CharField(max_length=50)
     rate = models.DecimalField(max_digits=10, decimal_places=4)
     change = models.DecimalField(max_digits=10, decimal_places=4)
-
+    currency_code = models.IntegerField()
     class Meta:
         unique_together = ('date', 'currency')
 
@@ -24,7 +24,7 @@ class CurrencyRate(models.Model):
         for entry in data:
             CurrencyRate.objects.update_or_create(
                 date=entry['date'], currency=entry['currency'],
-                defaults={'rate': entry['rate'], 'change': entry['change']}
+                defaults={'rate': entry['rate'], 'change': entry['change'], 'currency_code': entry['currency_code']}
             )
 
 class CountryCurrency(models.Model):
@@ -60,7 +60,6 @@ class RelativeChange(models.Model):
     date = models.DateField()
     currency = models.CharField(max_length=50)
     relative_change = models.DecimalField(max_digits=10, decimal_places=4)
-    relative_date = models.DateField()
 
     class Meta:
         unique_together = ('date', 'currency')
