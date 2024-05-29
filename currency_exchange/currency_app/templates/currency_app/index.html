@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Курс обмена валют</title>
+</head>
+<body>
+    <h1>Выбор периода</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Получить курсы валют</button>
+    </form>
+</body>
+</html>
